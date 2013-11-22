@@ -7,13 +7,13 @@
           fixedWidth: 200
         });
     </script>
-    {% for dir in showoff_directories %}
-      <script>
+    <script>
+      {% for dir in showoff_directories %}
         $('#tooltip-{{ dir["dirname"]}}').tooltipster({
           fixedWidth: 300,
           interactive: true
         });
+      {% endfor %}
       </script>
-    {% endfor %}
   </body>
 </html>
