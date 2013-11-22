@@ -1,6 +1,6 @@
 import os
-from flask import Flask
-from flask.ext.autoindex import AutoIndex
+from flask import Flask, render_template, url_for
+#from flask.ext.autoindex import AutoIndex
 from showoff import ShowOff
 
 SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
@@ -8,8 +8,14 @@ SHOWOFF_DIR = '.showoff'
 
 app = Flask(__name__)
 app.debug = True
-AutoIndex(app, browse_root=SHOWOFF_SITE_DIR)
+#AutoIndex(app, browse_root=SHOWOFF_SITE_DIR)
 showoff_thread = None
+
+@app.route('/')
+def root():
+    css_url = url_for('static', filename='style.css')
+    render_template('header.html', css_url=css_url)
+    render_template('footer.html')
 
 @app.route('/startshowoff/<path:dirname>')
 def startshowoff(dirname):
