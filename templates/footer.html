@@ -1,11 +1,19 @@
-</div>
-<div class="footer">
-</div>
-<script>
-$('tr:nth-child(2)').addClass('parent');
-$(document).ready(function() {
-  $('.tooltip').tooltipster();
-});
-</script>
-</body>
+    </div>
+    <div class="footer">
+    </div>
+    <script>
+      $('tr:nth-child(2)').addClass('parent');
+        $('.tooltip').tooltipster({
+          fixedWidth: 200
+        });
+    </script>
+    {% for dir in showoff_directories %}
+      <script>
+        $('#tooltip-{{ dir["dirname"]}}').tooltipster({
+          fixedWidth: 300,
+          interactive: true
+        });
+      </script>
+    {% endfor %}
+  </body>
 </html>

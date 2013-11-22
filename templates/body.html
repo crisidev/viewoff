@@ -1,0 +1,48 @@
+  <body>
+    <div class="wrapper">
+    <h2>ShowOff Presentations</h2>
+      <table>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for dir in showoff_directories %}
+          <tr>
+            <td valign="top">
+              <img src="/static/icons/{{ icon_dimension }}/folder.png" alt="[DIR]" />
+            </td>
+            <td>
+              {{ dir['dirname_fancy'] }}
+            </td>
+            <td>
+              <a href="/{{ dir['dirname'] }}/index.html" target="_blank">
+                <img src="/static/icons/{{ icon_dimension }}/view.png" title="Click to view presentation" class="tooltip"/>
+              </a>
+            </td>
+            <td>
+              <a href="/startshowoff/{{ dir['dirname'] }}" target="_blank">
+                <img src="/static/icons/{{ icon_dimension }}/serve.png" title="Click to start live presentation" class="tooltip"/>
+              </a>
+            </td>
+            <td>
+              <a href="/stopshowoff" target="_blank">
+                <img src="/static/icons/{{ icon_dimension }}/stop.png" title="Click to stop live presentation" class="tooltip"/>
+              </a>
+            </td>
+            <td>
+              <a href="#">
+                <span id="tooltip-{{ dir['dirname'] }}" title="
+                  <p style='text-align:left;'>
+                  <strong>Souffle</strong>
+                  Applicake lollipop oat cake gingerbread.
+                  </p>">
+                  <img src="/static/icons/{{ icon_dimension }}/info.png"/>
+                </span>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>

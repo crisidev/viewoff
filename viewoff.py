@@ -15,10 +15,12 @@ showoff_thread = None
 """
 @app.route('/')
 def root():
-    dimension = 32
+    icon_dimension = '24'
     showoff_directories = get_showoff_directories()
-    html = render_template('header.html', showoff_directories=showoff_directories, dimension='x'.join([dimension, dimension]))
-    html += render_template('footer.html')
+    html = render_template('header.html')
+    html += render_template('body.html', showoff_directories=showoff_directories,\
+            icon_dimension='x'.join([icon_dimension, icon_dimension]))
+    html += render_template('footer.html', showoff_directories=showoff_directories)
     return html
 
 @app.route('/startshowoff/<path:dirname>')
@@ -45,10 +47,10 @@ def viewshowoff(dirname):
     Functions
 """
 def get_showoff_directories():
-    directory_list = [dirname for dirname in os.listdir(SHOWOFF_SITE_DIR)
-            if os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname))
-                and os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname, SHOWOFF_DIR))]
-    return directory_list
+   return [{'dirname': dirname, 'dirname_fancy': ' '.join(dirname.split('_')).title()}\
+            for dirname in os.listdir(SHOWOFF_SITE_DIR)\
+            if os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname))\
+            and os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname, SHOWOFF_DIR))]
 
 if __name__ == '__main__':
     app.run()
