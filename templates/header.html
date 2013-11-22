@@ -5,16 +5,16 @@
     <title>ShowOff Repository</title>
     <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css') }}"></link>
     <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='tooltipster.css') }}"></link>
-    <script type="text/javascript" href="{{ url_for('static', filename='jquery.min.js') }}"></script>
-    <script type="text/javascript" href="{{ url_for('static', filename='jquery.tooltipster.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.tooltipster.min.js') }}"></script>
   </head>
   <body>
   <div class="wrapper">
   <table>
     <tr>
       <th><img src="/static/icons/blank.png" alt="[ICO]" /></th>
-      <th><a href="#">ShowOff Presentation</a></th>
-      <th><a href="#">Actions</a></th>
+      <th>ShowOff Presentation</th>
+      <th>Actions</th>
     </tr>
     {% for dirname in showoff_directories %}
       <tr>
@@ -25,14 +25,14 @@
           {{ dirname }}
         </td>
         <td>
-          <a href="/startshowoff/{{ dirname }}" target="_blank" title="Click to execute live presentation">
-            <img src="/static/icons/video.png"/>
+          <a href="/{{ dirname }}/index.html" target="_blank">
+            <img src="/static/icons/source.png" title="Click to view presentation" class="tooltip"/>
           </a>
-          <a href="/{{ dirname }}/index.html" target="_blank" title="Click to view static presentation">
-            <img src="/static/icons/source.png"/>
+          <a href="/startshowoff/{{ dirname }} target="_blank"">
+            <img src="/static/icons/video.png" title="Click to start live presentation" class="tooltip"/>
           </a>
-          <a href="/stopshowoff" target="_blank" title="Click to stop live presentation">
-            <img src="/static/icons/unknown.png"/>
+          <a href="/stopshowoff" target="_blank">
+            <img src="/static/icons/unknown.png" title="Click to stop live presentation" class="tooltip"/>
           </a>
         </td>
       </tr>
