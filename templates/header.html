@@ -1,38 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title>ShowOff Repository</title>
-  <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css') }}"></link>
-  <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='jquery.min.js') }}"></link>
-</head>
-<body>
-<div class="wrapper">
-<table>
-  <tr>
-    <th><img src="/static/icons/blank.png" alt="[ICO]" /></th>
-    <th><a href="?C=N;O=D">Name</a></th>
-    <th><a href="?C=M;O=A">Last modified</a></th>
-    <th><a href="?C=S;O=A">Size</a></th>
-  </tr>
-  <tr>
-    <td valign="top">
-      <img src="/static/icons/folder.png" alt="[DIR]" />
-    </td>
-    <td>
-      <a href="Community/">Community/</a>
-    </td>
-    <td align="right">25-Oct-2012 16:22  </td>
-    <td align="right">  - </td>
-  </tr>
-  <tr>
-    <td valign="top">
-      <img src="/static/icons/folder.png" alt="[DIR]" />
-    </td>
-    <td>
-      <a href="puppa">Puppa</a>
-    </td>
-    <td align="right">25-Oct-2012 16:22  </td>
-    <td align="right">  - </td>
-  </tr>
-</table>
+  <head>
+    <title>ShowOff Repository</title>
+    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css') }}"></link>
+    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='jquery.min.js') }}"></link>
+  </head>
+  <body>
+  <div class="wrapper">
+  <table>
+    <tr>
+      <th><img src="/static/icons/blank.png" alt="[ICO]" /></th>
+      <th><a href="#">ShowOff Presentation</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+    {% for dirname in showoff_directories %}
+      <tr>
+        <td valign="top">
+          <img src="/static/icons/folder.png" alt="[DIR]" />
+        </td>
+        <td>
+          {{ dirname }}
+        </td>
+        <td>
+          <a href="/startshowoff/{{ dirname }}" target="_blank" title="Click to execute live presentation">
+            <img src="/static/icons/video.png"/>
+          </a>
+          <a href="/{{ dirname }}/index.html" target="_blank" title="Click to view static presentation">
+            <img src="/static/icons/source.png"/>
+          </a>
+          <a href="/stopshowoff" target="_blank" title="Click to stop live presentation">
+            <img src="/static/icons/unknown.png"/>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>

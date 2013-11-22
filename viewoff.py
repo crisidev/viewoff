@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, send_from_directory, redirect
 from showoff import ShowOff
 
 SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
@@ -15,9 +15,10 @@ showoff_thread = None
 """
 @app.route('/')
 def root():
-    css_url = url_for('static', filename='style.css')
-    render_template('header.html', css_url=css_url)
-    render_template('footer.html')
+    showoff_directories = get_showoff_directories()
+    html = render_template('header.html', showoff_directories=showoff_directories)
+    html += render_template('footer.html')
+    return html
 
 @app.route('/startshowoff/<path:dirname>')
 def startshowoff(dirname):
@@ -26,7 +27,7 @@ def startshowoff(dirname):
     os.chdir(showoff_thread.showoff_path)
     showoff_thread.daemon = True
     showoff_thread.start()
-    return "OK"
+    return redirect("https://live.crisidev.org")
 
 @app.route('/stopshowoff')
 def stopshowoff():
@@ -34,15 +35,19 @@ def stopshowoff():
     showoff_thread.kill()
     return "OK"
 
+@app.route('/<path:dirname>')
+def viewshowoff(dirname):
+    return send_from_directory(SHOWOFF_SITE_DIR, dirname)
+
 
 """
     Functions
 """
-@app.route('/lol/')
-def get_showdown_dirs():
-    directory_list = [x[0] for x in os.walk(SHOWOFF_SITE_DIR)]
-    print directory_list
-    return "OK"
+def get_showoff_directories():
+    directory_list = [dirname for dirname in os.listdir(SHOWOFF_SITE_DIR)
+            if os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname))
+                and os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname, SHOWOFF_DIR))]
+    return directory_list 
 
 if __name__ == '__main__':
     app.run()
