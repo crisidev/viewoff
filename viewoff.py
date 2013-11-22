@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, url_for
-#from flask.ext.autoindex import AutoIndex
 from showoff import ShowOff
 
 SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
@@ -8,9 +7,12 @@ SHOWOFF_DIR = '.showoff'
 
 app = Flask(__name__)
 app.debug = True
-#AutoIndex(app, browse_root=SHOWOFF_SITE_DIR)
 showoff_thread = None
 
+
+"""
+    Flask routes
+"""
 @app.route('/')
 def root():
     css_url = url_for('static', filename='style.css')
@@ -30,6 +32,16 @@ def startshowoff(dirname):
 def stopshowoff():
     global showoff_thread
     showoff_thread.kill()
+    return "OK"
+
+
+"""
+    Functions
+"""
+@app.route('/lol/')
+def get_showdown_dirs():
+    directory_list = [x[0] for x in os.walk(SHOWOFF_SITE_DIR)]
+    print directory_list
     return "OK"
 
 if __name__ == '__main__':
