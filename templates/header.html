@@ -12,27 +12,27 @@
   <div class="wrapper">
   <table>
     <tr>
-      <th><img src="/static/icons/blank.png" alt="[ICO]" /></th>
+      <th></th>
       <th>ShowOff Presentation</th>
       <th>Actions</th>
     </tr>
     {% for dirname in showoff_directories %}
       <tr>
         <td valign="top">
-          <img src="/static/icons/folder.png" alt="[DIR]" />
+          <img src="/static/icons/{{ dimension }}/folder.png" alt="[DIR]" />
         </td>
         <td>
           {{ dirname }}
         </td>
         <td>
           <a href="/{{ dirname }}/index.html" target="_blank">
-            <img src="/static/icons/source.png" title="Click to view presentation" class="tooltip"/>
+            <img src="/static/icons/{{ dimension }}/view.png" title="Click to view presentation" class="tooltip"/>
           </a>
           <a href="/startshowoff/{{ dirname }}" target="_blank">
-            <img src="/static/icons/video.png" title="Click to start live presentation" class="tooltip"/>
+            <img src="/static/icons/{{ dimension }}/serve.png.png" title="Click to start live presentation" class="tooltip"/>
           </a>
           <a href="/stopshowoff" target="_blank">
-            <img src="/static/icons/unknown.png" title="Click to stop live presentation" class="tooltip"/>
+            <img src="/static/icons/{{ dimension }}/stop.png" title="Click to stop live presentation" class="tooltip"/>
           </a>
         </td>
       </tr>

@@ -15,8 +15,9 @@ showoff_thread = None
 """
 @app.route('/')
 def root():
+    dimension = 32
     showoff_directories = get_showoff_directories()
-    html = render_template('header.html', showoff_directories=showoff_directories)
+    html = render_template('header.html', showoff_directories=showoff_directories, dimension='x'.join([dimension, dimension]))
     html += render_template('footer.html')
     return html
 
@@ -47,7 +48,7 @@ def get_showoff_directories():
     directory_list = [dirname for dirname in os.listdir(SHOWOFF_SITE_DIR)
             if os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname))
                 and os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname, SHOWOFF_DIR))]
-    return directory_list 
+    return directory_list
 
 if __name__ == '__main__':
     app.run()
