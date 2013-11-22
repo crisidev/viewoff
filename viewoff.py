@@ -6,7 +6,7 @@ SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
 SHOWOFF_DIR = '.showoff'
 
 app = Flask(__name__)
-app.debug = True
+app.config['SERVER_NAME'] = 'localhost:5001'
 showoff_thread = None
 
 
