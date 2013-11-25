@@ -4,9 +4,9 @@ from showoff import ShowOff
 
 SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
 SHOWOFF_DIR = '.showoff'
-DEBUG = True
-SERVER_NAME = '127.0.0.1'
-SERVER_PORT = 5000
+DEBUG = False
+SERVER_NAME = 127.0.0.1
+SERVER_PORT = 5001
 
 app = Flask(__name__)
 app.config['DEBUG'] = DEBUG
