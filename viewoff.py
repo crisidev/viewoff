@@ -4,9 +4,13 @@ from showoff import ShowOff
 
 SHOWOFF_SITE_DIR = '/home/bigo/sites/showoff.crisidev.org'
 SHOWOFF_DIR = '.showoff'
+DEBUG = True
+SERVER_NAME = '127.0.0.1'
+SERVER_PORT = 5000
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'localhost:5001'
+app.config['DEBUG'] = DEBUG
+
 showoff_thread = None
 
 
@@ -53,4 +57,4 @@ def get_showoff_directories():
             and os.path.isdir(os.path.join(SHOWOFF_SITE_DIR, dirname, SHOWOFF_DIR))]
 
 if __name__ == '__main__':
-    app.run()
+    app.run(SERVER_NAME, SERVER_PORT)
